@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "trauma")
-public class Traumas {
+public class Trauma {
     
     @Id
     @Column
@@ -22,10 +22,10 @@ public class Traumas {
     @Column(nullable = false)
     private String gravidade;
 
-    public Traumas() {
+    public Trauma() {
     }
 
-    public Traumas(Integer id, String nome, String gravidade) {
+    public Trauma(Integer id, String nome, String gravidade) {
         this.id = id;
         this.nome = nome;
         this.gravidade = gravidade;

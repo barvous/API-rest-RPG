@@ -2,6 +2,7 @@ package com.marcos.server.model;
 
 import java.sql.Blob;
 import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
@@ -46,6 +48,9 @@ public class Pessoa {
     
     @Column(nullable = false)
     private Blob lore;
+
+    @Transient
+    private ArrayList<Trauma> trauma;
 
 
     public Pessoa() {

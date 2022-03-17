@@ -12,5 +12,4 @@ public class Personagem extends Pessoa{
     private String nomeJogador;
     private String classe;
     
-
 }
