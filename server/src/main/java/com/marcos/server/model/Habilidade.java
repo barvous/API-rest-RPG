@@ -13,7 +13,6 @@ public class Habilidade {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Integer id;
 
     @Column(nullable = false)
@@ -25,7 +24,6 @@ public class Habilidade {
     @Column(nullable = false)
     private String tipo;
     
-    @Column
-    private int valor;
+    private Integer valor;
 
 }

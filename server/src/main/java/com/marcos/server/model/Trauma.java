@@ -1,5 +1,7 @@
 package com.marcos.server.model;
 
+import java.util.ArrayList;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +14,6 @@ import javax.persistence.Table;
 public class Trauma {
     
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -21,6 +22,10 @@ public class Trauma {
 
     @Column(nullable = false)
     private String gravidade;
+
+    //Relacionamento caso seja necessário listar os personagems que possuem esse trauma.
+    // @ManyToMany(mappedBy = "traumas")
+    // private ArrayList<Personagem> personagens;
 
     public Trauma() {
     }

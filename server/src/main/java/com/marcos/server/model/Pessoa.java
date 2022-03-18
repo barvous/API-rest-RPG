@@ -5,17 +5,25 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "tipo_pessoa", discriminatorType = DiscriminatorType.STRING, length = 2)
 @Table(name = "tb_pessoa")
 public class Pessoa {
 
@@ -37,7 +45,6 @@ public class Pessoa {
     @Column(nullable = false)
     private double altura;
 
-    @Column
     private String genero;
 
     @Column(nullable = false)
@@ -49,9 +56,12 @@ public class Pessoa {
     @Column(nullable = false)
     private Blob lore;
 
-    @Transient
-    private ArrayList<Trauma> trauma;
-
+    @ManyToMany
+    @JoinTable(
+        joinColumns = @JoinColumn(name = "id_trauma"),
+        inverseJoinColumns = @JoinColumn(name = "id_pessoa")
+        )
+    private ArrayList<Trauma> traumas;
 
     public Pessoa() {
     }
