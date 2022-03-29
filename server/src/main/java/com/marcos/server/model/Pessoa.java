@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo_pessoa", discriminatorType = DiscriminatorType.STRING, length = 2)
-@Table(name = "tb_pessoa")
+@Table(name = "pessoa")
 public class Pessoa {
 
     @Id

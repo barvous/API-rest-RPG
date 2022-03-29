@@ -13,7 +13,7 @@ import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue("JD")
-@Table(name = "tb_personagem")
+@Table(name = "personagem")
 public class Personagem extends Pessoa{
     
     @Id
