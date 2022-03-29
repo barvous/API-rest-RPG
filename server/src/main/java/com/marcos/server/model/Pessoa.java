@@ -13,10 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
@@ -56,11 +54,12 @@ public class Pessoa {
     @Column(nullable = false)
     private Blob lore;
 
-    @ManyToMany
-    @JoinTable(
-        joinColumns = @JoinColumn(name = "id_trauma"),
-        inverseJoinColumns = @JoinColumn(name = "id_pessoa")
-        )
+    // @ManyToMany
+    // @JoinTable(
+    //     joinColumns = @JoinColumn(name = "id_trauma"),
+    //     inverseJoinColumns = @JoinColumn(name = "id_pessoa")
+    //     )
+    @Transient
     private ArrayList<Trauma> traumas;
 
     public Pessoa() {
