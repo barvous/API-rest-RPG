@@ -22,36 +22,37 @@ import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo_pessoa", discriminatorType = DiscriminatorType.STRING, length = 2)
-@Table(name = "tb_pessoa")
+@Table(name = "pessoa")
 public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_pessoa")
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(name = "nome_pessoa", nullable = false)
     private String nome;
     
-    @Column(nullable = false)
+    @Column(name = "familia_pessoa", nullable = false)
     private String familia;
 
-    @Column(name = "data_nascimento")
+    @Column(name = "data_nascimento_pessoa")
     @JsonFormat(shape = Shape.STRING, pattern = "dd/MM/yyyy")
     private Date dataNascimento;
 
-    @Column(nullable = false)
+    @Column(name = "altura_pessoa", nullable = false)
     private double altura;
 
+    @Column(name = "genero_pessoa")
     private String genero;
 
-    @Column(nullable = false)
+    @Column(name = "aparencia_pessoa", nullable = false)
     private String aparencia;
     
-    @Column(nullable = false)
+    @Column(name = "terra_natal_pessoa", nullable = false)
     private String terraNatal;
     
-    @Column(nullable = false)
+    @Column(name = "lore_pessoa", nullable = false)
     private Blob lore;
 
     // @ManyToMany
