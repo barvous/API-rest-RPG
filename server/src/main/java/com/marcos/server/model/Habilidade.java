@@ -13,17 +13,19 @@ public class Habilidade {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_habilidade", nullable = false)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "nome_habilidade", nullable = false)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(name = "descricao_habilidade", nullable = false)
     private String descricao;
 
-    @Column(nullable = false)
+    @Column(name = "tipo_habilidade", nullable = false)
     private String tipo;
     
+    @Column(name = "valor_habilidade")
     private String valor;
 
     public Habilidade() {
@@ -77,6 +79,10 @@ public class Habilidade {
         this.valor = valor;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Habilidade [descricao=" + descricao + ", id=" + id + ", nome=" + nome + ", tipo=" + tipo + ", valor="
+                + valor + "]";
+    }
 
 }

@@ -2,6 +2,7 @@ package com.marcos.server.model;
 
 import java.util.ArrayList;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,10 @@ public class Personagem extends Pessoa{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "nome_jogador_personagem")
     private String nomeJogador;
+    
+    @Column(name = "classe_personagem")
     private String classe;
     
     // @ManyToMany

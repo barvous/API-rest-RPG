@@ -1,7 +1,5 @@
 package com.marcos.server.model;
 
-import java.util.ArrayList;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,12 +13,13 @@ public class Trauma {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_trauma")
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(name = "nome_trauma", nullable = false)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(name = "gravidade_trauma", nullable = false)
     private String gravidade;
 
     //Relacionamento caso seja necessário listar os personagems que possuem esse trauma.
