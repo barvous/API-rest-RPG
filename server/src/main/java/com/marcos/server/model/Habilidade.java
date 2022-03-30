@@ -25,17 +25,21 @@ public class Habilidade {
     @Column(name = "tipo_habilidade", nullable = false)
     private String tipo;
     
+    @Column(name = "custo")
+    private String custo;
+
     @Column(name = "valor_habilidade")
     private String valor;
 
     public Habilidade() {
     }
 
-    public Habilidade(Long id, String nome, String descricao, String tipo, String valor) {
+    public Habilidade(Long id, String nome, String descricao, String tipo, String custo, String valor) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.tipo = tipo;
+        this.custo = custo;
         this.valor = valor;
     }
 
@@ -71,6 +75,14 @@ public class Habilidade {
         this.tipo = tipo;
     }
 
+    public String getCusto() {
+        return custo;
+    }
+
+    public void setCusto(String custo) {
+        this.custo = custo;
+    }
+
     public String getValor() {
         return valor;
     }
@@ -81,8 +93,8 @@ public class Habilidade {
 
     @Override
     public String toString() {
-        return "Habilidade [descricao=" + descricao + ", id=" + id + ", nome=" + nome + ", tipo=" + tipo + ", valor="
-                + valor + "]";
+        return "Habilidade [custo=" + custo + ", descricao=" + descricao + ", id=" + id + ", nome=" + nome + ", tipo="
+                + tipo + ", valor=" + valor + "]";
     }
 
 }
