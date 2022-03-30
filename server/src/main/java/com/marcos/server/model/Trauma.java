@@ -1,5 +1,7 @@
 package com.marcos.server.model;
 
+import java.sql.Blob;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,13 +16,16 @@ public class Trauma {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_trauma")
-    private Integer id;
+    private Long id;
 
     @Column(name = "nome_trauma", nullable = false)
     private String nome;
 
     @Column(name = "gravidade_trauma", nullable = false)
     private String gravidade;
+
+    @Column(name = "descricao_trauma")
+    private Blob descricao;
 
     //Relacionamento caso seja necessário listar os personagems que possuem esse trauma.
     // @ManyToMany(mappedBy = "traumas")
@@ -29,17 +34,18 @@ public class Trauma {
     public Trauma() {
     }
 
-    public Trauma(Integer id, String nome, String gravidade) {
+    public Trauma(Long id, String nome, String gravidade, Blob descricao) {
         this.id = id;
         this.nome = nome;
         this.gravidade = gravidade;
+        this.descricao = descricao;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -59,9 +65,17 @@ public class Trauma {
         this.gravidade = gravidade;
     }
 
+    public Blob getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(Blob descricao) {
+        this.descricao = descricao;
+    }
+
     @Override
     public String toString() {
-        return "Traumas [gravidade=" + gravidade + ", id=" + id + ", nome=" + nome + "]";
+        return "Trauma [descricao=" + descricao + ", gravidade=" + gravidade + ", id=" + id + ", nome=" + nome + "]";
     }
 
 }
