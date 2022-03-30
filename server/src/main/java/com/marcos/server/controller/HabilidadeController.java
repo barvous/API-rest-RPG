@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.marcos.server.model.Habilidade;
 import com.marcos.server.repository.HabilidadeRepository;
+import com.marcos.server.server.HabilidadeService;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class HabilidadeController {
     
     @Autowired
-    private HabilidadeRepository habilidadeRep;
+    private HabilidadeService habilidadeService;
 
     @PostMapping()
     public ResponseEntity<Habilidade> cadastrarHabilidade(@RequestBody Habilidade habilidade){
-        //CADASTRA CLIENTE NO CONEXOS
-        habilidadeRep.save(habilidade);
+        
+        habilidadeService.criarHabilidade(habilidade);
 
         return ResponseEntity.status(201).body(habilidade);
     }
@@ -37,7 +38,7 @@ public class HabilidadeController {
     @GetMapping()
     public ResponseEntity<List<Habilidade>> listarHabilidades(){
 
-        List<Habilidade> habilidades = habilidadeRep.findAll(); 
+        List<Habilidade> habilidades = habilidadeService.listarHabilidade(); 
 
         return ResponseEntity.status(200).body(habilidades);
     }
@@ -45,32 +46,24 @@ public class HabilidadeController {
     @GetMapping("/{id}")
     public ResponseEntity<Habilidade> buscarHabilidade(@PathVariable Long id){
 
-        Habilidade habilidade = habilidadeRep.findById(id).get(); 
+        Habilidade habilidade = habilidadeService.buscarHabilidade(id); 
 
         return ResponseEntity.status(200).body(habilidade);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Habilidade> atualizarHabilidade(@RequestBody Habilidade habilidadeAlteracoes, @PathVariable Long id){
+    public ResponseEntity<Habilidade> atualizarHabilidade(@RequestBody Habilidade habilidade, @PathVariable Long id){
 
-        habilidadeAlteracoes.setId(id);
+        habilidade = habilidadeService.atualizarHabilidade(habilidade, id);
 
-        Habilidade habilidadeAlvo = habilidadeRep.findById(id).get();
-
-        BeanUtils.copyProperties(habilidadeAlteracoes, habilidadeAlvo);
-
-        habilidadeRep.save(habilidadeAlvo);
-
-        return ResponseEntity.status(200).body(habilidadeAlvo);
+        return ResponseEntity.status(200).body(habilidade);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Habilidade> removerHabilidade(@PathVariable Long id){
 
-        Habilidade habilidadeRemovida = habilidadeRep.findById(id).get(); 
+        habilidadeService.removerHabilidade(id);
 
-        habilidadeRep.deleteById(id);
-
-        return ResponseEntity.status(200).body(habilidadeRemovida);
+        return ResponseEntity.status(200).build();
     }
 }

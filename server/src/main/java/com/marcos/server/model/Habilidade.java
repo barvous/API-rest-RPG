@@ -25,7 +25,7 @@ public class Habilidade {
     @Column(name = "tipo_habilidade", nullable = false)
     private String tipo;
     
-    @Column(name = "custo", nullable = false)
+    @Column(name = "custo")
     private String custo;
 
     @Column(name = "valor_habilidade")
