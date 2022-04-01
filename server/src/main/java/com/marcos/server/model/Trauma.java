@@ -1,6 +1,6 @@
 package com.marcos.server.model;
 
-import java.sql.Blob;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "trauma")
-public class Trauma {
+public class Trauma implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Trauma {
     private String gravidade;
 
     @Column(name = "descricao_trauma")
-    private Blob descricao;
+    private String descricao;
 
     //Relacionamento caso seja necessário listar os personagems que possuem esse trauma.
     // @ManyToMany(mappedBy = "traumas")
@@ -34,7 +34,7 @@ public class Trauma {
     public Trauma() {
     }
 
-    public Trauma(Long id, String nome, String gravidade, Blob descricao) {
+    public Trauma(Long id, String nome, String gravidade, String descricao) {
         this.id = id;
         this.nome = nome;
         this.gravidade = gravidade;
@@ -65,11 +65,11 @@ public class Trauma {
         this.gravidade = gravidade;
     }
 
-    public Blob getDescricao() {
+    public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(Blob descricao) {
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 

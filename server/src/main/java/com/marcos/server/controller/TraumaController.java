@@ -3,9 +3,8 @@ package com.marcos.server.controller;
 import java.util.List;
 
 import com.marcos.server.model.Trauma;
-import com.marcos.server.repository.TraumaRepository;
+import com.marcos.server.server.TraumaService;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,12 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class TraumaController {
     
     @Autowired
-    private TraumaRepository traumaRep;
+    private TraumaService traumaService;
 
     @PostMapping()
     public ResponseEntity<Trauma> cadastrarTrauma(@RequestBody Trauma trauma){
         //CADASTRA CLIENTE NO CONEXOS
-        traumaRep.save(trauma);
+        traumaService.criarTrauma(trauma);
 
         return ResponseEntity.status(201).body(trauma);
     }
@@ -37,7 +36,7 @@ public class TraumaController {
     @GetMapping()
     public ResponseEntity<List<Trauma>> listarTraumas(){
 
-        List<Trauma> traumas = traumaRep.findAll(); 
+        List<Trauma> traumas = traumaService.listarTrauma(); 
 
         return ResponseEntity.status(200).body(traumas);
     }
@@ -45,32 +44,24 @@ public class TraumaController {
     @GetMapping("/{id}")
     public ResponseEntity<Trauma> buscarTrauma(@PathVariable Long id){
 
-        Trauma trauma = traumaRep.findById(id).get(); 
+        Trauma trauma = traumaService.buscarTrauma(id); 
 
         return ResponseEntity.status(200).body(trauma);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Trauma> atualizarTrauma(@RequestBody Trauma traumaAlteracoes, @PathVariable Long id){
+    public ResponseEntity<Trauma> atualizarTrauma(@RequestBody Trauma trauma, @PathVariable Long id){
 
-        traumaAlteracoes.setId(id);
+        trauma = traumaService.atualizarTrauma(trauma, id);
 
-        Trauma traumaAlvo = traumaRep.findById(id).get();
-
-        BeanUtils.copyProperties(traumaAlteracoes, traumaAlvo);
-
-        traumaRep.save(traumaAlvo);
-
-        return ResponseEntity.status(200).body(traumaAlvo);
+        return ResponseEntity.status(200).body(trauma);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Trauma> removerTrauma(@PathVariable Long id){
 
-        Trauma traumaRemovida = traumaRep.findById(id).get(); 
+        traumaService.removerTrauma(id);
 
-        traumaRep.deleteById(id);
-
-        return ResponseEntity.status(200).body(traumaRemovida);
+        return ResponseEntity.status(200).build();
     }
 }

@@ -1,6 +1,5 @@
 package com.marcos.server.model;
 
-import java.sql.Blob;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -28,7 +27,7 @@ public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pessoa")
-    private Integer id;
+    private Long id;
 
     @Column(name = "nome_pessoa", nullable = false)
     private String nome;
@@ -53,7 +52,7 @@ public class Pessoa {
     private String terraNatal;
     
     @Column(name = "lore_pessoa", nullable = false)
-    private Blob lore;
+    private String lore;
 
     // @ManyToMany
     // @JoinTable(
@@ -66,8 +65,8 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(Integer id, String nome, String familia, Date dataNascimento, double altura, String genero,
-            String aparencia, String terraNatal, Blob lore) {
+    public Pessoa(Long id, String nome, String familia, Date dataNascimento, double altura, String genero,
+            String aparencia, String terraNatal, String lore) {
         this.id = id;
         this.nome = nome;
         this.familia = familia;
@@ -79,11 +78,11 @@ public class Pessoa {
         this.lore = lore;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -143,11 +142,11 @@ public class Pessoa {
         this.terraNatal = terraNatal;
     }
 
-    public Blob getLore() {
+    public String getLore() {
         return lore;
     }
 
-    public void setLore(Blob lore) {
+    public void setLore(String lore) {
         this.lore = lore;
     }
 

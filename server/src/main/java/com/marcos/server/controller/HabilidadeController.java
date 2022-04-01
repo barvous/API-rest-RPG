@@ -3,10 +3,8 @@ package com.marcos.server.controller;
 import java.util.List;
 
 import com.marcos.server.model.Habilidade;
-import com.marcos.server.repository.HabilidadeRepository;
 import com.marcos.server.server.HabilidadeService;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
