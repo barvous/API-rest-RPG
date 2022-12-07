@@ -1,5 +1,7 @@
 package com.marcos.server.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "habilidade")
-public class Habilidade {
+public class Habilidade implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +21,7 @@ public class Habilidade {
     @Column(name = "nome_habilidade", nullable = false)
     private String nome;
 
-    @Column(name = "descricao_habilidade", nullable = false)
+    @Column(name = "descricao_habilidade", nullable = false, length = 500)
     private String descricao;
 
     @Column(name = "tipo_habilidade", nullable = false)
