@@ -1,7 +1,6 @@
 package com.marcos.server.model;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -13,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
@@ -59,9 +57,6 @@ public class Pessoa {
     //     joinColumns = @JoinColumn(name = "id_trauma"),
     //     inverseJoinColumns = @JoinColumn(name = "id_pessoa")
     //     )
-    @Transient
-    private ArrayList<Trauma> traumas;
-
     public Pessoa() {
     }
 
