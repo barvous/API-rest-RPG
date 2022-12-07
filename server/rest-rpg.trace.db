@@ -67,3 +67,18 @@ insert into habilidade (id_habilidade, custo, descricao_habilidade, nome_habilid
 2022-12-07 15:52:41 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Value too long for column "DESCRICAO_HABILIDADE VARCHAR(255)": "STRINGDECODE('Voc\u00ea cria uma liga\u00e7\u00e3o mental com outra pessoa e \u00e9 capaz de se comunicar instant\u00e2neamente ... (298)"; SQL statement:
 insert into habilidade (id_habilidade, custo, descricao_habilidade, nome_habilidade, tipo_habilidade, valor_habilidade) values (default, ?, ?, ?, ?, ?) [22001-200]
+2022-12-07 17:27:06 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DROP DATABASE[*] JDBC:H2:FILE:./REST-RPG"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"; SQL statement:
+DROP DATABASE jdbc:h2:file:./rest-rpg [42001-200]
+2022-12-07 17:27:44 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DROP DATABASE[*] REST-RPG"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"; SQL statement:
+DROP DATABASE rest-rpg [42001-200]
+2022-12-07 17:27:45 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DROP DATABASE[*] REST-RPG"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"; SQL statement:
+DROP DATABASE rest-rpg [42001-200]
+2022-12-07 17:29:48 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PERSONAGEM DELETE[*] COLUMN ATRIBUTO_ATRIBUTO_INTEGERELIGENCIA"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE personagem DELETE COLUMN atributo_ATRIBUTO_INTEGERELIGENCIA [42001-200]
+2022-12-07 17:29:55 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PERSONAGEM DELETE[*] COLUMN ATRIBUTO_INTEGERELIGENCIA"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE personagem DELETE COLUMN ATRIBUTO_INTEGERELIGENCIA [42001-200]

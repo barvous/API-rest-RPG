@@ -16,7 +16,7 @@ public class Personagem {
     //Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "nome_jogador_personagem")
     private String nomeJogador;
@@ -31,22 +31,22 @@ public class Personagem {
     private String classe;
 
     @Column(name = "nex")
-    private int nex;
+    private Integer nex;
 
     @Column(name = "atributo_forca", nullable = false)
-    private int atributoForca;
+    private Integer atributoForca;
 
     @Column(name = "atributo_agilidade", nullable = false)
-    private int atributoAgilidade;
+    private Integer atributoAgilidade;
 
-    @Column(name = "atributo_inteligencia", nullable = false)
-    private int atributoInteligencia;
+    @Column(name = "atributo_intelecto", nullable = false)
+    private Integer atributoIntelecto;
 
     @Column(name = "atributo_vigor", nullable = false)
-    private int atributoVigor;
+    private Integer atributoVigor;
 
     @Column(name = "atributo_presenca", nullable = false)
-    private int atributoPresenca;
+    private Integer atributoPresenca;
 
     // Construtores
     public Personagem() {
@@ -54,11 +54,11 @@ public class Personagem {
 
     //Gets e Sets
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -94,51 +94,51 @@ public class Personagem {
         this.classe = classe;
     }
 
-    public int getNex() {
+    public Integer getNex() {
         return nex;
     }
 
-    public void setNex(int nex) {
+    public void setNex(Integer nex) {
         this.nex = nex;
     }
 
-    public int getAtributoForca() {
+    public Integer getAtributoForca() {
         return atributoForca;
     }
 
-    public void setAtributoForca(int atributoForca) {
+    public void setAtributoForca(Integer atributoForca) {
         this.atributoForca = atributoForca;
     }
 
-    public int getAtributoAgilidade() {
+    public Integer getAtributoAgilidade() {
         return atributoAgilidade;
     }
 
-    public void setAtributoAgilidade(int atributoAgilidade) {
+    public void setAtributoAgilidade(Integer atributoAgilidade) {
         this.atributoAgilidade = atributoAgilidade;
     }
 
-    public int getAtributoInteligencia() {
-        return atributoInteligencia;
+    public Integer getAtributoIntelecto() {
+        return atributoIntelecto;
     }
 
-    public void setAtributoInteligencia(int atributoInteligencia) {
-        this.atributoInteligencia = atributoInteligencia;
+    public void setAtributoIntelecto(Integer atributoIntelecto) {
+        this.atributoIntelecto = atributoIntelecto;
     }
 
-    public int getAtributoVigor() {
+    public Integer getAtributoVigor() {
         return atributoVigor;
     }
 
-    public void setAtributoVigor(int atributoVigor) {
+    public void setAtributoVigor(Integer atributoVigor) {
         this.atributoVigor = atributoVigor;
     }
 
-    public int getAtributoPresenca() {
+    public Integer getAtributoPresenca() {
         return atributoPresenca;
     }
 
-    public void setAtributoPresenca(int atributoPresenca) {
+    public void setAtributoPresenca(Integer atributoPresenca) {
         this.atributoPresenca = atributoPresenca;
     }
 
