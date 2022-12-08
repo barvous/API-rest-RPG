@@ -1,4 +1,2 @@
 .vscode
-db_rpg.mv.db
 server/rest-rpg.mv.db
-server/rest-rpg.trace.db
