@@ -17,8 +17,9 @@ public class PersonagemServiceImpl implements PersonagemService {
 
     private final PersonagemRepository personagemRepository;
 
+    //A injeção de dependência é feita através do construtor pois o objetos são 'final'.
+    //Isso é feito para garantir que haverá somente UMA instância de cada classe que possa utilizar da Injeção de Dependência
     PersonagemServiceImpl(PersonagemRepository personagemRepository) {
-
         this.personagemRepository = personagemRepository;
     }
 
