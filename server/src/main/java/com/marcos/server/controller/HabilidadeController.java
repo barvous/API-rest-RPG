@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,9 +25,9 @@ public class HabilidadeController {
     private HabilidadeService habilidadeService;
 
     @PostMapping()
-    public ResponseEntity<Habilidade> cadastrarHabilidade(@RequestBody Habilidade habilidade){
+    public ResponseEntity<Habilidade> salvarHabilidade(@RequestBody Habilidade habilidade){
         
-        habilidadeService.criarHabilidade(habilidade);
+        habilidadeService.salvarHabilidade(habilidade);
 
         return ResponseEntity.status(201).body(habilidade);
     }
@@ -49,18 +48,10 @@ public class HabilidadeController {
         return ResponseEntity.status(200).body(habilidade);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Habilidade> atualizarHabilidade(@RequestBody Habilidade habilidade, @PathVariable Long id){
-
-        habilidade = habilidadeService.atualizarHabilidade(habilidade, id);
-
-        return ResponseEntity.status(200).body(habilidade);
-    }
-
     @DeleteMapping("/{id}")
-    public ResponseEntity<Habilidade> removerHabilidade(@PathVariable Long id){
+    public ResponseEntity<Habilidade> excluirHabilidade(@PathVariable Long id){
 
-        habilidadeService.removerHabilidade(id);
+        habilidadeService.excluirHabilidade(id);
 
         return ResponseEntity.status(200).build();
     }

@@ -10,11 +10,8 @@ public interface HabilidadeService {
 
     Habilidade buscarHabilidade(Long id);
 
-    Habilidade criarHabilidade(Habilidade habilidade);
+    Habilidade salvarHabilidade(Habilidade habilidade);
 
-    Habilidade atualizarHabilidade(Habilidade habilidade, Long id);
+    void excluirHabilidade(Long id);
 
-    void removerHabilidade(Long id);
-
-    void validarHabilidade(Habilidade habilidade);
 }

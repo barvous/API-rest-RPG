@@ -2,22 +2,27 @@ package com.marcos.server.server.Impl;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.marcos.server.model.Habilidade;
 import com.marcos.server.model.exception.BadRequestException;
 import com.marcos.server.model.exception.NotFoundException;
 import com.marcos.server.repository.HabilidadeRepository;
 import com.marcos.server.server.HabilidadeService;
 
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.stereotype.Service;
-
 @Service
 public class HabilidadeServiceImpl  implements HabilidadeService{
     
-    @Autowired
-    HabilidadeRepository habilidadeRepository;
+    private final HabilidadeRepository habilidadeRepository;
+
+    //A injeção de dependência é feita através do construtor pois o objetos são 'final'.
+    //Isso é feito para garantir que haverá somente UMA instância de cada classe que possa utilizar da Injeção de Dependência
+    HabilidadeServiceImpl(HabilidadeRepository habilidadeRepository) {
+        this.habilidadeRepository = habilidadeRepository;
+    }
 
     @Override
     public List<Habilidade> listarHabilidade() {
@@ -31,43 +36,28 @@ public class HabilidadeServiceImpl  implements HabilidadeService{
     }
 
     @Override
-    public Habilidade criarHabilidade(Habilidade habilidade) {
-        
-        //VERIFICA SE OS CAMPOS PRINCIPAIS ESTÃO NULOS
+    @Transactional  // A anotação Transactional do springframework permite que as funções façam rollbacks no bancos de dados 
+                    // caso haja alguma falha dentro da função.
+    public Habilidade salvarHabilidade(Habilidade habilidade) {
+
+        if (habilidade.getId() != null) {
+            Long idHabilidade = habilidade.getId();
+            Habilidade habilidadeBanco = buscarHabilidade(idHabilidade);
+
+            // VERIFICA SE ALGUM CAMPO É NULO, E CASO FOR NULO, ELE NÃO SOFRE ALTERAÇÕES
+            habilidade = verificarAtualizacaoHabilidade(habilidade, habilidadeBanco);
+
+            // AS ALTERAÇÕES SÃO COPIADAS PARA A HABILIDADE ALVO
+            BeanUtils.copyProperties(habilidade, habilidadeBanco);
+        }
         validarHabilidade(habilidade);
 
-        //SETANDO O ID COMO NULL PARA SER GERADO UM ID AUTOMÁTICO NO BANCO DE DADOS
-        //E TAMBÉM PARA NÃO CORRER RISCO DE ALTERAR OUTRO REGISTRO NO BANCO.
-        habilidade.setId(null);
-
-        //SALVANDO O HABILIDADE NO BANCO DE DADOS
         return habilidadeRepository.save(habilidade);
-        
+
     }
 
     @Override
-    public Habilidade atualizarHabilidade(Habilidade habilidadeAlteracoes, Long id) {
-
-        //SETANDO O ID DO OBJETO COMO O ID DA URL
-        habilidadeAlteracoes.setId(id);
-        
-        //PROCURA A HABILIDADE QUE SE DESEJA ATUALIZAR E LANÇA UMA EXCEÇÃO CASO NÃO ENCONTRE
-        Habilidade habilidadeAlvo = buscarHabilidade(id);
-            
-        //VERIFICA SE ALGUM CAMPO É NULO, E CASO FOR NULO, ELE NÃO SOFRE ALTERAÇÕES
-        habilidadeAlteracoes = verificarAtualizacaoHabilidade(habilidadeAlteracoes, habilidadeAlvo);
-        
-        //AS ALTERAÇÕES SÃO COPIADAS PARA A HABILIDADE ALVO
-        BeanUtils.copyProperties(habilidadeAlteracoes, habilidadeAlvo);
-        
-        //O HABILIDADE ALVO, AGORA COM AS ALTERAÇÕES, É SALVO NO BANCO DE DADOS
-        habilidadeRepository.save(habilidadeAlvo);
-
-        return habilidadeAlvo;
-    }
-
-    @Override
-    public void removerHabilidade(Long id) {
+    public void excluirHabilidade(Long id) {
         try {
             habilidadeRepository.deleteById(id);
 
@@ -100,6 +90,6 @@ public class HabilidadeServiceImpl  implements HabilidadeService{
     //VERIFICA SE OS CAMPOS PRINCIPAIS ESTÃO NULOS
     public void validarHabilidade(Habilidade habilidade){
         if(habilidade.getNome() == null || habilidade.getTipo() == null || habilidade.getDescricao() == null)
-            throw new BadRequestException("Requisição inválida. Os campos: nome, tipo e habilidade não podem ser nulos.");
+            throw new BadRequestException("Requisição inválida. Os campos: nome, tipo e descrição não podem ser nulos.");
     }
 }

@@ -6,12 +6,12 @@ import com.marcos.server.model.Personagem;
 
 public interface PersonagemService {
     
-    void salvarPersonagem(Personagem personagem);
+    Personagem salvarPersonagem(Personagem personagem);
 
     List<Personagem> listarPersonagens();
 
     Personagem buscarPersonagem(Long idPersonagem);
 
-    void deletarPersonagem(Long idPersonagem);
+    void excluirPersonagem(Long idPersonagem);
     
 }

@@ -27,10 +27,10 @@ public class PersonagemController {
     }
 
     @PostMapping()
-    public ResponseEntity<Personagem> inserirPersonagem(@RequestBody Personagem personagem) {
-        personagemService.salvarPersonagem(personagem);
+    public ResponseEntity<Personagem> salvarPersonagem(@RequestBody Personagem personagem) {
+        Personagem personagemBanco = personagemService.salvarPersonagem(personagem);
         
-        return ResponseEntity.status(201).build();
+        return ResponseEntity.status(201).body(personagemBanco);
     }
 
     @GetMapping()
@@ -50,9 +50,9 @@ public class PersonagemController {
     }
 
     @DeleteMapping(path = "/{idPersonagem}")
-    public ResponseEntity<Personagem> alterarPersonagem(@PathVariable Long idPersonagem) {
+    public ResponseEntity<Personagem> excluirPersonagem(@PathVariable Long idPersonagem) {
 
-        personagemService.deletarPersonagem(idPersonagem);
+        personagemService.excluirPersonagem(idPersonagem);
 
         return ResponseEntity.ok().build();
     }

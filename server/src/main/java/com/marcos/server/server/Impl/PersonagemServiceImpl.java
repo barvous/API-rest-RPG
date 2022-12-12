@@ -26,7 +26,7 @@ public class PersonagemServiceImpl implements PersonagemService {
     @Override
     @Transactional  // A anotação Transactional do springframework permite que as funções façam rollbacks no bancos de dados 
                     // caso haja alguma falha dentro da função.
-    public void salvarPersonagem(Personagem personagem) {
+    public Personagem salvarPersonagem(Personagem personagem) {
 
         if (personagem.getId() != null) {
             Long idPersonagem = personagem.getId();
@@ -39,7 +39,7 @@ public class PersonagemServiceImpl implements PersonagemService {
             BeanUtils.copyProperties(personagem, personagemBanco);
         }
 
-        personagemRepository.save(personagem);
+        return personagemRepository.save(personagem);
 
     }
 
@@ -55,7 +55,7 @@ public class PersonagemServiceImpl implements PersonagemService {
     }
 
     @Override
-    public void deletarPersonagem(Long idPersonagem) {
+    public void excluirPersonagem(Long idPersonagem) {
 
         try {
             personagemRepository.deleteById(idPersonagem);
