@@ -1,3 +1,5 @@
+(Versão 2: https://github.com/barvous/API-rest-RPG-v02 )
+
 # API-rest-RPG
 Um estudo de API REST, utilizando como base o RPG "Ordem Paranormal". Este projeto possui 2 classes simples "Habilidade" e "Personagem", e também possui classes
 para exceções customizadas "BadRequestException", "NotFoundException" e "StandardError".
